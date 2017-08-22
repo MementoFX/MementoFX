@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memento", "src\MementoFX\Memento.csproj", "{A55D9702-109E-44EA-9E7E-D3B0B49EF123}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Memento", "src\MementoFX\Memento.csproj", "{A55D9702-109E-44EA-9E7E-D3B0B49EF123}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memento.Tests", "src\MementoFX.Tests\Memento.Tests.csproj", "{477C4749-13E2-46D4-91B5-77037D9168B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memento.Tests", "src\MementoFX.Tests\Memento.Tests.csproj", "{A2D51F4B-0EF8-45D8-93B3-CFA046E0D81C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +17,15 @@ Global
 		{A55D9702-109E-44EA-9E7E-D3B0B49EF123}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A55D9702-109E-44EA-9E7E-D3B0B49EF123}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A55D9702-109E-44EA-9E7E-D3B0B49EF123}.Release|Any CPU.Build.0 = Release|Any CPU
-		{477C4749-13E2-46D4-91B5-77037D9168B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{477C4749-13E2-46D4-91B5-77037D9168B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{477C4749-13E2-46D4-91B5-77037D9168B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{477C4749-13E2-46D4-91B5-77037D9168B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2D51F4B-0EF8-45D8-93B3-CFA046E0D81C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2D51F4B-0EF8-45D8-93B3-CFA046E0D81C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2D51F4B-0EF8-45D8-93B3-CFA046E0D81C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2D51F4B-0EF8-45D8-93B3-CFA046E0D81C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9AE469B7-F0C2-4E38-93A5-FC04D4A162A8}
 	EndGlobalSection
 EndGlobal
