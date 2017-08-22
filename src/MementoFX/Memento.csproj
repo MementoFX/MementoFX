@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.0.0-pre1</Version>
+    <Version>2.0.0-pre2</Version>
     <Authors>Andrea Saltarello, Mastreeno ltd</Authors>
     <Company>Mastreeno ltd</Company>
     <Description>An application framework supporting the development of time travelling applications</Description>
     <Copyright>Copyright Andrea Saltarello, Mastreeno ltd © 2016, 2017</Copyright>
     <PackageProjectUrl>https://github.com/MementoFX</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/MementoFX/MementoFX/blob/master/license.txt</PackageLicenseUrl>
+    <PackageLicenseUrl>http://www.mastreeno.com/memento/license</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/MementoFX/MementoFX</RepositoryUrl>
     <PackageTags>event sourcing, DDD, CQRS</PackageTags>
     <Product>MementoFX</Product>
