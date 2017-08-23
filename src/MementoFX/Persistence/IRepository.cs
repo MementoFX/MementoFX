@@ -71,11 +71,11 @@ namespace Memento.Persistence
         /// <param name="item">The aggregate instance</param>
         Task SaveAsync<T>(T item) where T : IAggregate;
 
-        ///// <summary>
-        ///// Saves a snapshot of an aggregate instance
-        ///// </summary>
-        ///// <typeparam name="T">The aggregate's type</typeparam>
-        ///// <param name="item">The aggregate instance</param>
-        //void SaveAndTakeSnapshot<T>(T item) where T : IAggregate;
+        /// <summary>
+        /// Saves a snapshot of an aggregate instance
+        /// </summary>
+        /// <typeparam name="T">The aggregate's type</typeparam>
+        /// <param name="item">The aggregate instance</param>
+        void SaveAndTakeSnapshot<T>(T item) where T : IAggregate, ISupportSnapshots;
     }
 }

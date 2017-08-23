@@ -211,20 +211,20 @@ namespace Memento.Persistence
             await Task.Run(() => Save(item));
         }
 
-        ///// <summary>
-        ///// Saves a snapshot of an aggregate instance
-        ///// </summary>
-        ///// <typeparam name="T">The aggregate's type</typeparam>
-        ///// <param name="item">The aggregate instance</param>
-        //public void SaveAndTakeSnapshot<T>(T item) where T : IAggregate
-        //{
-        //    if (item == null)
-        //        throw new ArgumentNullException(nameof(item));
+        /// <summary>
+        /// Saves a snapshot of an aggregate instance
+        /// </summary>
+        /// <typeparam name="T">The aggregate's type</typeparam>
+        /// <param name="item">The aggregate instance</param>
+        public void SaveAndTakeSnapshot<T>(T item) where T : IAggregate, ISupportSnapshots
+        {
+            if (item == null)
+                throw new ArgumentNullException(nameof(item));
 
-        //    Save(item);
-        //    var snapshot = new SnapshotTakenEvent<T>(item);
-        //    EventStore.Save(snapshot);
-        //}
-        #endregion
+            Save(item);
+            //var snapshot = new SnapshotTakenEvent<T>(item);
+            //EventStore.Save(snapshot);
         }
+        #endregion
+    }
 }

@@ -115,5 +115,18 @@ namespace Memento.Domain
             UncommittedEvents.Add(@event);
             (this as dynamic).ApplyEvent((dynamic)@event);
         }
+
+        protected AggregateMemento CreateMemento()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected void RestoreMemento(AggregateMemento memento)
+        {
+            if (memento == null)
+                throw new ArgumentNullException(nameof(memento));
+
+            throw new NotImplementedException();
+        }
     }
 }
