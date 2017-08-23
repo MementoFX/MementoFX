@@ -201,6 +201,16 @@ namespace Memento.Persistence
             }
         }
 
+        /// <summary>
+        /// Saves an aggregate instance
+        /// </summary>
+        /// <typeparam name="T">The aggregate's type</typeparam>
+        /// <param name="item">The aggregate instance</param>
+        public async Task SaveAsync<T>(T item) where T : IAggregate
+        {
+            await Task.Run(() => Save(item));
+        }
+
         ///// <summary>
         ///// Saves a snapshot of an aggregate instance
         ///// </summary>
@@ -216,5 +226,5 @@ namespace Memento.Persistence
         //    EventStore.Save(snapshot);
         //}
         #endregion
-    }
+        }
 }
