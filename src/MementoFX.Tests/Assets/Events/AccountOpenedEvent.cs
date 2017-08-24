@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Memento.Tests.Events
+namespace Memento.Tests.Assets.Events
 {
-    public class WithdrawalEvent : UnitTestFriendlyDomainEvent
+    public class AccountOpenedEvent : UnitTestFriendlyDomainEvent
     {
-        public decimal Amount { get; set; }
+        public decimal Balance { get; set; }
 
         public Guid CurrentAccountId { get; set; }
     }

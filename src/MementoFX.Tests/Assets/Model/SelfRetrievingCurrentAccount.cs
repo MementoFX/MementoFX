@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Memento.Domain;
 using Memento.Persistence;
-using Memento.Tests.Events;
+using Memento.Tests.Assets.Events;
 
-namespace Memento.Tests.Model
+namespace Memento.Tests.Assets.Model
 {
     public class SelfRetrievingCurrentAccount : Aggregate, IManageEventRetrieval
     {

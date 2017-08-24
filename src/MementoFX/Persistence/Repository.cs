@@ -223,7 +223,7 @@ namespace Memento.Persistence
 
             Save(item);
             var memento = item.CreateMemento();
-            var snapshot = new SnapshotTakenEvent(memento, typeof(T));
+            var snapshot = new SnapshotTakenEvent(memento);
             EventStore.Save(snapshot);
         }
         #endregion

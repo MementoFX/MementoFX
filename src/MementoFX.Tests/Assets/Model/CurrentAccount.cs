@@ -1,12 +1,12 @@
 ﻿using Memento.Domain;
-using Memento.Tests.Events;
+using Memento.Tests.Assets.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Memento.Tests.Model
+namespace Memento.Tests.Assets.Model
 {
     public class CurrentAccount : Aggregate
     {

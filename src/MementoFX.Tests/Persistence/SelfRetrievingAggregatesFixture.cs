@@ -4,9 +4,9 @@ using System.Threading;
 using Moq;
 using NUnit.Framework;
 using SharpTestsEx;
+using Memento.Tests.Assets.Events;
+using Memento.Tests.Assets.Model;
 using Memento.Messaging;
-using Memento.Tests.Events;
-using Memento.Tests.Model;
 using Memento.Persistence;
 using Memento.Persistence.InMemory;
 

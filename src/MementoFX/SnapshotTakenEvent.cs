@@ -26,11 +26,10 @@ namespace Memento
         /// Creates a snapshot instance
         /// </summary>
         /// <param name="memento">The aggregate instance to be used as the snapshot</param>
-        /// <param name="aggregateType">The aggregate type</param>
-        public SnapshotTakenEvent(IAggregateMemento memento, Type aggregateType)
+        public SnapshotTakenEvent(IAggregateMemento memento)
         {
             Memento = memento ?? throw new ArgumentNullException(nameof(memento));
-            AggregateFullTypeName = aggregateType.FullName ?? throw new ArgumentNullException(nameof(aggregateType));
+            AggregateFullTypeName = memento.AggregateFullTypeName;
         }
     }
 }

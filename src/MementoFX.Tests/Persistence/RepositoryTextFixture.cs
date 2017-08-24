@@ -5,8 +5,8 @@ using SharpTestsEx;
 using Memento.Domain;
 using Memento.Messaging;
 using Memento.Persistence;
-using Memento.Tests.Events;
-using Memento.Tests.Model;
+using Memento.Tests.Assets.Events;
+using Memento.Tests.Assets.Model;
 using Memento.Persistence.InMemory;
 
 namespace Memento.Tests.Persistence

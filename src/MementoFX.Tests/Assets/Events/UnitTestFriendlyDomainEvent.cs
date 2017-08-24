@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Memento.Tests.Events
+namespace Memento.Tests.Assets.Events
 {
     public class UnitTestFriendlyDomainEvent : DomainEvent
     {
