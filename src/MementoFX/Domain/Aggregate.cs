@@ -125,7 +125,7 @@ namespace Memento.Domain
         {
             if (memento == null)
                 throw new ArgumentNullException(nameof(memento));
-
+            
             throw new NotImplementedException();
         }
     }

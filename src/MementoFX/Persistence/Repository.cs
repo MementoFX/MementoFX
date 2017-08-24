@@ -222,7 +222,8 @@ namespace Memento.Persistence
                 throw new ArgumentNullException(nameof(item));
 
             Save(item);
-            //var snapshot = new SnapshotTakenEvent<T>(item);
+            var memento = item.CreateMemento();
+            var snapshot = new SnapshotTakenEvent(memento);
             //EventStore.Save(snapshot);
         }
         #endregion

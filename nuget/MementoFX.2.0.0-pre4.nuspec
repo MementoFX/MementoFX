@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+    <metadata>
+        <id>MementoFX</id>
+        <version>2.0.0-pre4</version>
+        <authors>Andrea Saltarello,Mastreeno ltd</authors>
+        <owners>Andrea Saltarello,Mastreeno ltd</owners>
+        <licenseUrl>http://www.mastreeno.com/license/evaluation</licenseUrl>
+        <projectUrl>https://github.com/MementoFX</projectUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>An application framework supporting the development of time travelling applications</description>
+        <summary />
+        <copyright>Copyright 2017 Andrea Saltarello, Mastreeno ltd.  All rights reserved</copyright>
+        <tags>cqrs, event sourcing, ddd</tags>
+    </metadata>
+    <files>
+        <file src="..\src\MementoFX\bin\Release\Memento.dll" target="lib\net451\Memento.dll" />
+        <file src="..\src\MementoFX\bin\Release\Memento.pdb" target="lib\net451\Memento.pdb" />
+        <file src="..\src\MementoFX\bin\Release\Memento.XML" target="lib\net451\Memento.XML" />
+    </files>
+</package>

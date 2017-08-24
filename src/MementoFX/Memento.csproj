@@ -1,33 +1,91 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.0.0-pre2</Version>
-    <Authors>Andrea Saltarello, Mastreeno ltd</Authors>
-    <Company>Mastreeno ltd</Company>
-    <Description>An application framework supporting the development of time travelling applications</Description>
-    <Copyright>Copyright Andrea Saltarello, Mastreeno ltd © 2016, 2017</Copyright>
-    <PackageProjectUrl>https://github.com/MementoFX</PackageProjectUrl>
-    <PackageLicenseUrl>http://www.mastreeno.com/memento/license</PackageLicenseUrl>
-    <RepositoryUrl>https://github.com/MementoFX/MementoFX</RepositoryUrl>
-    <PackageTags>event sourcing, DDD, CQRS</PackageTags>
-    <Product>MementoFX</Product>
-    <PackageId>MementoFX</PackageId>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <SignAssembly>false</SignAssembly>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A55D9702-109E-44EA-9E7E-D3B0B49EF123}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Memento</RootNamespace>
+    <AssemblyName>Memento</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Memento.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Memento.XML</DocumentationFile>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
     <AssemblyOriginatorKeyFile>MementoFX.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.0\Memento.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard2.0\Memento.xml</DocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.4.0" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
-
+  <ItemGroup>
+    <Compile Include="Domain\Aggregate.cs" />
+    <Compile Include="Domain\AggregateIdAttribute.cs" />
+    <Compile Include="Command.cs" />
+    <Compile Include="Domain\AggregateMemento.cs" />
+    <Compile Include="Domain\IAggregateMemento.cs" />
+    <Compile Include="Domain\IApplyEvent.cs" />
+    <Compile Include="Domain\IManageEventRetrieval.cs" />
+    <Compile Include="Domain\ISupportSnapshots.cs" />
+    <Compile Include="Messaging\IAsyncEventDispatcher.cs" />
+    <Compile Include="Messaging\IEventDispatcher.cs" />
+    <Compile Include="Persistence\EventMapping.cs" />
+    <Compile Include="Persistence\EventStore.cs" />
+    <Compile Include="Persistence\IEventStore.cs" />
+    <Compile Include="DomainEvent.cs" />
+    <Compile Include="Domain\IAggregate.cs" />
+    <Compile Include="Persistence\IRepository.cs" />
+    <Compile Include="Persistence\Repository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Domain\TimestampAttribute.cs" />
+    <Compile Include="SnapshotTakenEvent.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MementoFX.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>

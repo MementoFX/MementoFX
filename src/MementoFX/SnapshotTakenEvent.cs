@@ -15,13 +15,13 @@ namespace Memento
         /// <summary>
         /// Gets or sets the shapshot
         /// </summary>
-        public object Memento { get; private set; }
+        public IAggregateMemento Memento { get; private set; }
 
         /// <summary>
         /// Creates a snapshot instance
         /// </summary>
         /// <param name="memento">The aggregate instance to be used as the snapshot</param>
-        public SnapshotTakenEvent(object memento)
+        public SnapshotTakenEvent(IAggregateMemento memento)
         {
             Memento = memento ?? throw new ArgumentNullException(nameof(memento));
         }

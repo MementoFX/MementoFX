@@ -8,7 +8,7 @@ using Memento.Messaging;
 using Memento.Tests.Events;
 using Memento.Tests.Model;
 using Memento.Persistence;
-//using Memento.Persistence.InMemory;
+using Memento.Persistence.InMemory;
 
 namespace Memento.Tests.Persistence
 {
@@ -17,12 +17,12 @@ namespace Memento.Tests.Persistence
     {
         private IEventStore EventStore;
 
-        //[SetUp]
-        //public void SetUp()
-        //{
-        //    var eventDispatcherMock = new Mock<IEventDispatcher>();
-        //    EventStore = new InMemoryEventStore(eventDispatcherMock.Object);
-        //}
+        [SetUp]
+        public void SetUp()
+        {
+            var eventDispatcherMock = new Mock<IEventDispatcher>();
+            EventStore = new InMemoryEventStore(eventDispatcherMock.Object);
+        }
 
         [Test]
         public void Test_EventReplaying_evaluating_CurrentAccountBalance_using_a_stream_containing_past_events_only()

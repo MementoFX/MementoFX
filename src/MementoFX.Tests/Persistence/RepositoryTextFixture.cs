@@ -7,7 +7,7 @@ using Memento.Messaging;
 using Memento.Persistence;
 using Memento.Tests.Events;
 using Memento.Tests.Model;
-//using Memento.Persistence.InMemory;
+using Memento.Persistence.InMemory;
 
 namespace Memento.Tests.Persistence
 {
@@ -16,12 +16,12 @@ namespace Memento.Tests.Persistence
     {
         private IEventStore EventStore;
 
-        //[SetUp]
-        //public void SetUp()
-        //{
-        //    var eventDispatcherMock = new Mock<IEventDispatcher>();
-        //    EventStore = new InMemoryEventStore(eventDispatcherMock.Object);
-        //}
+        [SetUp]
+        public void SetUp()
+        {
+            var eventDispatcherMock = new Mock<IEventDispatcher>();
+            EventStore = new InMemoryEventStore(eventDispatcherMock.Object);
+        }
 
         [Test]
         public void Ctor_should_throw_ArgumentNullException_on_null_eventStore_and_value_of_parameter_should_be_eventStore()
