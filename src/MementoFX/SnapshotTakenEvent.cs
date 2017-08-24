@@ -18,12 +18,19 @@ namespace Memento
         public IAggregateMemento Memento { get; private set; }
 
         /// <summary>
+        /// The aggregate's full CLR type name
+        /// </summary>
+        public string AggregateFullTypeName { get; set; }
+
+        /// <summary>
         /// Creates a snapshot instance
         /// </summary>
         /// <param name="memento">The aggregate instance to be used as the snapshot</param>
-        public SnapshotTakenEvent(IAggregateMemento memento)
+        /// <param name="aggregateType">The aggregate type</param>
+        public SnapshotTakenEvent(IAggregateMemento memento, Type aggregateType)
         {
             Memento = memento ?? throw new ArgumentNullException(nameof(memento));
+            AggregateFullTypeName = aggregateType.FullName ?? throw new ArgumentNullException(nameof(aggregateType));
         }
     }
 }
