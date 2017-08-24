@@ -62,7 +62,6 @@
     <Compile Include="Domain\AggregateMemento.cs" />
     <Compile Include="Domain\IAggregateMemento.cs" />
     <Compile Include="Domain\IApplyEvent.cs" />
-    <Compile Include="Domain\IManageEventRetrieval.cs" />
     <Compile Include="Domain\ISupportSnapshots.cs" />
     <Compile Include="Messaging\IAsyncEventDispatcher.cs" />
     <Compile Include="Messaging\IEventDispatcher.cs" />

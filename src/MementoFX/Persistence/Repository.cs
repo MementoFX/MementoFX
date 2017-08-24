@@ -92,17 +92,10 @@ namespace Memento.Persistence
         /// <returns>The aggregate instance</returns>
         public T GetById<T>(Guid id, DateTime pointInTime) where T : IAggregate
         {
-            dynamic aggregateInstance = FormatterServices.GetUninitializedObject(typeof(T));
             IEnumerable<DomainEvent> events = null;
-            if (aggregateInstance as IManageEventRetrieval == null)
-            {
-                var eventDescriptors = BuildReplayableEventsDescriptorByAggregate<T>();
-                events = EventStore.RetrieveEvents(id, pointInTime, eventDescriptors, null);
-            }
-            else
-            {
-                events = ((IManageEventRetrieval)aggregateInstance).RetrieveEvents(EventStore, id, null, pointInTime);
-            }
+            dynamic aggregateInstance = FormatterServices.GetUninitializedObject(typeof(T));
+            var eventDescriptors = BuildReplayableEventsDescriptorByAggregate<T>();
+            events = EventStore.RetrieveEvents(id, pointInTime, eventDescriptors, null);
             (aggregateInstance as Aggregate).IsTimeTravelling = true;
             (aggregateInstance as IAggregate).ReplayEvents(events);
             return (T)aggregateInstance;
@@ -129,18 +122,11 @@ namespace Memento.Persistence
         /// <param name="pointInTime">A point in time</param>
         /// <returns>The aggregate instance</returns>
         public T GetById<T>(Guid id, Guid timelineId, DateTime pointInTime) where T : IAggregate
-        {
-            dynamic aggregateInstance = FormatterServices.GetUninitializedObject(typeof(T));
+        {          
             IEnumerable<DomainEvent> events = null;
-            if (aggregateInstance as IManageEventRetrieval == null)
-            {
-                var eventDescriptors = BuildReplayableEventsDescriptorByAggregate<T>();
-                events = EventStore.RetrieveEvents(id, pointInTime, eventDescriptors, timelineId);
-            }
-            else
-            {
-                events = ((IManageEventRetrieval)aggregateInstance).RetrieveEvents(EventStore, id, timelineId, pointInTime);
-            }
+            dynamic aggregateInstance = FormatterServices.GetUninitializedObject(typeof(T));
+            var eventDescriptors = BuildReplayableEventsDescriptorByAggregate<T>();
+            events = EventStore.RetrieveEvents(id, pointInTime, eventDescriptors, timelineId);
             (aggregateInstance as Aggregate).IsTimeTravelling = true;
             (aggregateInstance as IAggregate).ReplayEvents(events);
             return (T)aggregateInstance;
@@ -158,16 +144,8 @@ namespace Memento.Persistence
             var lastPointInTime = pointsInTime.Max();
             IEnumerable<DomainEvent> events = null;
             dynamic aggregateInstance = FormatterServices.GetUninitializedObject(typeof(T));
-            if (aggregateInstance as IManageEventRetrieval == null)
-            {
-                var eventDescriptors = BuildReplayableEventsDescriptorByAggregate<T>();
-                events = EventStore.RetrieveEvents(id, lastPointInTime, eventDescriptors, null);
-            }
-            else
-            {
-                events = ((IManageEventRetrieval)aggregateInstance).RetrieveEvents(EventStore, id, null, lastPointInTime);
-            }
-
+            var eventDescriptors = BuildReplayableEventsDescriptorByAggregate<T>();
+            events = EventStore.RetrieveEvents(id, lastPointInTime, eventDescriptors, null);
             IList<T> aggregates = new List<T>();
             foreach(var date in pointsInTime.OrderBy(d => d))
             {
@@ -225,6 +203,16 @@ namespace Memento.Persistence
             var memento = item.CreateMemento();
             var snapshot = new SnapshotTakenEvent(memento);
             EventStore.Save(snapshot);
+        }
+
+        /// <summary>
+        /// Saves a snapshot of an aggregate instance
+        /// </summary>
+        /// <typeparam name="T">The aggregate's type</typeparam>
+        /// <param name="item">The aggregate instance</param>
+        public async Task SaveAndTakeSnapshotAsync<T>(T item) where T : IAggregate, ISupportSnapshots
+        {
+            await Task.Run(() => SaveAndTakeSnapshot(item));
         }
         #endregion
     }

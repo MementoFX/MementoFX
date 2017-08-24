@@ -61,7 +61,6 @@
   <ItemGroup>
     <Compile Include="AggregateIdAttributeFixture.cs" />
     <Compile Include="Assets\Events\AccountOpenedEvent.cs" />
-    <Compile Include="Assets\Model\SelfRetrievingCurrentAccount.cs" />
     <Compile Include="Assets\Events\UnitTestFriendlyDomainEvent.cs" />
     <Compile Include="Assets\Events\WithdrawalEvent.cs" />
     <Compile Include="Assets\Model\CurrentAccount.cs" />
@@ -69,7 +68,6 @@
     <Compile Include="Persistence\EventStoreFixture.cs" />
     <Compile Include="Persistence\RepositoryTextFixture.cs" />
     <Compile Include="Persistence\Repository_SnapshotTestFixture.cs" />
-    <Compile Include="Persistence\SelfRetrievingAggregatesFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SnapshotTakenEventFixture.cs" />
   </ItemGroup>
