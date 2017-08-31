@@ -107,6 +107,17 @@ namespace Memento.Persistence
             return aggregateInstance;
         }
 
+        private T _GetById<T>(Guid id, Guid timelineId, DateTime pointInTime) where T : IAggregate
+        {
+            IEnumerable<DomainEvent> events = null;
+            dynamic aggregateInstance = FormatterServices.GetUninitializedObject(typeof(T));
+            var eventDescriptors = BuildReplayableEventsDescriptorByAggregate<T>();
+            events = EventStore.RetrieveEvents(id, pointInTime, eventDescriptors, timelineId);
+            (aggregateInstance as IAggregate).ReplayEvents(events);
+            (aggregateInstance as Aggregate).IsTimeTravelling = true;
+            return (T)aggregateInstance;
+        }
+
         /// <summary>
         /// Retrieve an aggregate instance restoring the value it would have in a given point in time happening along a timeline
         /// </summary>
@@ -116,7 +127,8 @@ namespace Memento.Persistence
         /// <returns>The aggregate instance</returns>
         public T GetById<T>(Guid id, Guid timelineId) where T : IAggregate
         {
-            return GetById<T>(id, timelineId, DateTime.Now);
+            var aggregateInstance = _GetById<T>(id, timelineId, DateTime.Now);
+            return aggregateInstance;
         }
 
         /// <summary>
@@ -128,14 +140,9 @@ namespace Memento.Persistence
         /// <param name="pointInTime">A point in time</param>
         /// <returns>The aggregate instance</returns>
         public T GetById<T>(Guid id, Guid timelineId, DateTime pointInTime) where T : IAggregate
-        {          
-            IEnumerable<DomainEvent> events = null;
-            dynamic aggregateInstance = FormatterServices.GetUninitializedObject(typeof(T));
-            var eventDescriptors = BuildReplayableEventsDescriptorByAggregate<T>();
-            events = EventStore.RetrieveEvents(id, pointInTime, eventDescriptors, timelineId);
-            (aggregateInstance as Aggregate).IsTimeTravelling = true;
-            (aggregateInstance as IAggregate).ReplayEvents(events);
-            return (T)aggregateInstance;
+        {
+            var aggregateInstance = _GetById<T>(id, timelineId, pointInTime);
+            return aggregateInstance;
         }
 
         /// <summary>
