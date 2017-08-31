@@ -70,6 +70,16 @@ namespace Memento.Persistence
 
         #region IRepository implementation
 
+        private T _GetById<T>(Guid id, DateTime pointInTime) where T : IAggregate
+        {
+            IEnumerable<DomainEvent> events = null;
+            dynamic aggregateInstance = FormatterServices.GetUninitializedObject(typeof(T));
+            var eventDescriptors = BuildReplayableEventsDescriptorByAggregate<T>();
+            events = EventStore.RetrieveEvents(id, pointInTime, eventDescriptors, null);
+            (aggregateInstance as IAggregate).ReplayEvents(events);
+            return (T)aggregateInstance;
+        }
+
         /// <summary>
         /// Retrieves an aggregate instance
         /// </summary>
@@ -78,7 +88,7 @@ namespace Memento.Persistence
         /// <returns>The aggregate instance</returns>
         public T GetById<T>(Guid id) where T : IAggregate
         {
-            var aggregateInstance = GetById<T>(id, DateTime.Now);
+            var aggregateInstance = _GetById<T>(id, DateTime.Now);
             (aggregateInstance as Aggregate).IsTimeTravelling = false;
             return aggregateInstance;
         }
@@ -92,13 +102,9 @@ namespace Memento.Persistence
         /// <returns>The aggregate instance</returns>
         public T GetById<T>(Guid id, DateTime pointInTime) where T : IAggregate
         {
-            IEnumerable<DomainEvent> events = null;
-            dynamic aggregateInstance = FormatterServices.GetUninitializedObject(typeof(T));
-            var eventDescriptors = BuildReplayableEventsDescriptorByAggregate<T>();
-            events = EventStore.RetrieveEvents(id, pointInTime, eventDescriptors, null);
+            var aggregateInstance = _GetById<T>(id, DateTime.Now);
             (aggregateInstance as Aggregate).IsTimeTravelling = true;
-            (aggregateInstance as IAggregate).ReplayEvents(events);
-            return (T)aggregateInstance;
+            return aggregateInstance;
         }
 
         /// <summary>
@@ -198,6 +204,8 @@ namespace Memento.Persistence
         {
             if (item == null)
                 throw new ArgumentNullException(nameof(item));
+            if (item as Aggregate != null && (item as Aggregate).IsTimeTravelling)
+                throw new ArgumentException("Can't save a time travelling instance.", nameof(item));
 
             Save(item);
             var memento = item.CreateMemento();

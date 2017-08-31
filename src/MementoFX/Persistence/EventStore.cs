@@ -52,6 +52,15 @@ namespace Memento.Persistence
         /// Saves an event within the store
         /// </summary>
         /// <param name="event">The event</param>
+        public async Task SaveAsync(DomainEvent @event)
+        {
+            await Task.Run(() => Save(@event));
+        }
+
+        /// <summary>
+        /// Saves an event within the store
+        /// </summary>
+        /// <param name="event">The event</param>
         public void Save(DomainEvent @event) 
         {
             if (@event == null)

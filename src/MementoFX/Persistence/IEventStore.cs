@@ -35,5 +35,11 @@ namespace Memento.Persistence
         /// </summary>
         /// <param name="event">The event</param>
         void Save(DomainEvent @event);
+
+        /// <summary>
+        /// Saves an event within the store
+        /// </summary>
+        /// <param name="event">The event</param>
+        Task SaveAsync(DomainEvent @event);
     }
 }
