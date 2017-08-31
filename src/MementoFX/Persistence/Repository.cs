@@ -114,7 +114,7 @@ namespace Memento.Persistence
             var eventDescriptors = BuildReplayableEventsDescriptorByAggregate<T>();
             events = EventStore.RetrieveEvents(id, pointInTime, eventDescriptors, timelineId);
             (aggregateInstance as IAggregate).ReplayEvents(events);
-            (aggregateInstance as Aggregate).IsTimeTravelling = true;
+            (aggregateInstance as Aggregate).timelineId = timelineId;
             return (T)aggregateInstance;
         }
 
@@ -128,6 +128,7 @@ namespace Memento.Persistence
         public T GetById<T>(Guid id, Guid timelineId) where T : IAggregate
         {
             var aggregateInstance = _GetById<T>(id, timelineId, DateTime.Now);
+            (aggregateInstance as Aggregate).IsTimeTravelling = false;
             return aggregateInstance;
         }
 
@@ -142,6 +143,7 @@ namespace Memento.Persistence
         public T GetById<T>(Guid id, Guid timelineId, DateTime pointInTime) where T : IAggregate
         {
             var aggregateInstance = _GetById<T>(id, timelineId, pointInTime);
+            (aggregateInstance as Aggregate).IsTimeTravelling = true;
             return aggregateInstance;
         }
 

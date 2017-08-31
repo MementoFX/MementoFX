@@ -17,6 +17,11 @@ namespace Memento.Domain
         Guid Id { get; }
 
         /// <summary>
+        /// Gets the id of the timeline the instance belongs to
+        /// </summary>
+        Guid? TimelineId { get; }
+
+        /// <summary>
         /// Specifies whether the aggregate has pending changes
         /// </summary>
         bool HasPendingChanges { get; }

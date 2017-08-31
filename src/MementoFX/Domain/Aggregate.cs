@@ -20,6 +20,16 @@ namespace Memento.Domain
             }
         }
 
+        internal Guid? timelineId = null;
+
+        Guid? IAggregate.TimelineId
+        {
+            get
+            {
+                return timelineId;
+            }
+        }
+
         bool IAggregate.HasPendingChanges 
         { 
             get 
@@ -133,8 +143,15 @@ namespace Memento.Domain
         /// Raises an event so to have it applied at aggregate's instance level
         /// </summary>
         /// <param name="event">The event to be applied</param>
+        /// <exception cref="ArgumentNullException">Thrown if @event is null</exception>
         protected void RaiseEvent(DomainEvent @event)
         {
+            if (@event == null)
+                throw new ArgumentNullException(nameof(@event));
+
+            var timelineId = (this as IAggregate).TimelineId;
+            if (timelineId.HasValue)
+                @event.TimelineId = timelineId;
             UncommittedEvents.Add(@event);
             (this as dynamic).ApplyEvent((dynamic)@event);
         }
