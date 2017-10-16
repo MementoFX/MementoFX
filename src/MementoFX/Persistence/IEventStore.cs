@@ -1,11 +1,11 @@
-﻿using Memento.Domain;
+﻿using MementoFX.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Memento.Persistence
+namespace MementoFX.Persistence
 {
     /// <summary>
     /// Represents an event store

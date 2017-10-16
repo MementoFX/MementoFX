@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Memento.Persistence
+namespace MementoFX.Persistence
 {
     /// <summary>
     /// Defines a domain event descriptor used by a repository

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Memento.Domain
+namespace MementoFX.Domain
 {
     /// <summary>
     /// Specifies the name of the event's property to be used as the aggregate id

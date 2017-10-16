@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Memento.Domain
+namespace MementoFX.Domain
 {
     /// <summary>
     /// Provides the base implementation for the Memento.IAggregate interface

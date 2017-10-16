@@ -1,29 +1,28 @@
 ﻿using System;
 using Moq;
-using NUnit.Framework;
+using Xunit;
 using SharpTestsEx;
-using Memento.Domain;
-using Memento.Messaging;
-using Memento.Persistence;
-using Memento.Tests.Assets.Events;
-using Memento.Tests.Assets.Model;
-using Memento.Persistence.InMemory;
+using MementoFX.Domain;
+using MementoFX.Messaging;
+using MementoFX.Persistence;
+using MementoFX.Tests.Assets.Events;
+using MementoFX.Tests.Assets.Model;
+using MementoFX.Persistence.InMemory;
 
-namespace Memento.Tests.Persistence
+namespace MementoFX.Tests.Persistence
 {
-    [TestFixture]
+    
     public class RepositoryTextFixture
     {
         private IEventStore EventStore;
 
-        [SetUp]
-        public void SetUp()
+        public RepositoryTextFixture()
         {
             var eventDispatcherMock = new Mock<IEventDispatcher>();
             EventStore = new InMemoryEventStore(eventDispatcherMock.Object);
         }
 
-        [Test]
+        [Fact]
         public void Ctor_should_throw_ArgumentNullException_on_null_eventStore_and_value_of_parameter_should_be_eventStore()
         {
             Executing.This(() => new Repository(null))
@@ -37,7 +36,7 @@ namespace Memento.Tests.Persistence
                            .EqualTo("eventStore");
         }
 
-        [Test]
+        [Fact]
         public void Test_EventCount()
         {
             var currentAccountId = Guid.NewGuid();
@@ -57,11 +56,11 @@ namespace Memento.Tests.Persistence
 
             var sut = new Repository(EventStore);
             var currentAccount = sut.GetById<CurrentAccount>(currentAccountId);
-            Assert.AreEqual(2, ((IAggregate)currentAccount).OccurredEvents.Count);
+            Assert.Equal(2, ((IAggregate)currentAccount).OccurredEvents.Count);
         }
 
 
-        [Test]
+        [Fact]
         public void Test_EventCount_at_a_specific_date()
         {
             var currentAccountId = Guid.NewGuid();
@@ -82,10 +81,10 @@ namespace Memento.Tests.Persistence
 
             var sut = new Repository(EventStore);
             var currentAccount = sut.GetById<CurrentAccount>(currentAccountId, DateTime.Now.AddMonths(2));
-            Assert.AreEqual(2, ((IAggregate)currentAccount).OccurredEvents.Count);
+            Assert.Equal(2, ((IAggregate)currentAccount).OccurredEvents.Count);
         }
 
-        [Test]
+        [Fact]
         public void Test_EventReplaying_evaluating_CurrentAccountBalance_using_a_stream_containing_past_events_only()
         {
             var currentAccountId = Guid.NewGuid();
@@ -106,10 +105,10 @@ namespace Memento.Tests.Persistence
 
             var sut = new Repository(EventStore);
             var currentAccount = sut.GetById<CurrentAccount>(currentAccountId, DateTime.Now.AddMonths(2));
-            Assert.AreEqual(100, currentAccount.Balance);
+            Assert.Equal(100, currentAccount.Balance);
         }
 
-        [Test]
+        [Fact]
         public void Test_EventReplaying_evaluating_CurrentAccountBalance_using_a_stream_containing_both_past_and_future_events()
         {
             var currentAccountId = Guid.NewGuid();
@@ -139,10 +138,10 @@ namespace Memento.Tests.Persistence
             var sut = new Repository(EventStore);
             var currentAccount = sut.GetById<CurrentAccount>(currentAccountId, DateTime.Now.AddMonths(2));
 
-            Assert.AreEqual(100, currentAccount.Balance);
+            Assert.Equal(100, currentAccount.Balance);
         }
 
-        [Test]
+        [Fact]
         public void Test_EventReplaying_evaluating_CurrentAccountBalance_using_a_stream_containing_past_events_only_and_a_different_timeline()
         {
             var currentAccountId = Guid.NewGuid();
@@ -172,10 +171,10 @@ namespace Memento.Tests.Persistence
 
             var sut = new Repository(EventStore);
             var currentAccount = sut.GetById<CurrentAccount>(currentAccountId, DateTime.Now.AddMonths(3));
-            Assert.AreEqual(100, currentAccount.Balance);
+            Assert.Equal(100, currentAccount.Balance);
         }
 
-        [Test]
+        [Fact]
         public void Test_Timeline_specific_EventReplaying_evaluating_CurrentAccountBalance_using_a_stream_containing_both_past_and_future_events()
         {
             var currentAccountId = Guid.NewGuid();
@@ -207,10 +206,10 @@ namespace Memento.Tests.Persistence
 
             var sut = new Repository(EventStore);
             var currentAccount = sut.GetById<CurrentAccount>(currentAccountId, timelineId, DateTime.Now.AddMonths(3));
-            Assert.AreEqual(50, currentAccount.Balance);
+            Assert.Equal(50, currentAccount.Balance);
         }
 
-        [Test]
+        [Fact]
         public void Test_Repository_should_update_OccurredEvents()
         {
             var currentAccount = CurrentAccount.Factory.CreateCurrentAccount();
@@ -219,7 +218,7 @@ namespace Memento.Tests.Persistence
             var sut = new Repository(eventStore);
 
             sut.Save<CurrentAccount>(currentAccount);
-            Assert.AreEqual(1, ((IAggregate)currentAccount).OccurredEvents.Count);
+            Assert.Equal(1, ((IAggregate)currentAccount).OccurredEvents.Count);
         }
     }
 }

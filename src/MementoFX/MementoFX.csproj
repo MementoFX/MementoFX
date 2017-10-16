@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>andysal, mastreeno</Authors>
+    <Company>Mastreeno ltd</Company>
+    <Description>An application framework supporting the development of time travelling applications</Description>
+    <Copyright>© 2017 Andrea Saltarello, Mastreeno ltd</Copyright>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+    <PackageLicenseUrl>https://github.com/MementoFX/MementoFX/blob/develop/license.txt</PackageLicenseUrl>
+    <PackageProjectUrl>https://mementofx.mastreeno.com</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MementoFX/MementoFX/</RepositoryUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <SignAssembly>false</SignAssembly>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>2.0.0-pre5</Version>
+    <PackageTags>mementofx, persistence, in-memory, cqrs, event sourcing</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard2.0\MementoFX.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\MementoFX.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.4.0" />
+  </ItemGroup>
+
+</Project>

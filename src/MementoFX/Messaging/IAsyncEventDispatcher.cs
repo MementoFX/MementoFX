@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Memento.Messaging
+namespace MementoFX.Messaging
 {
     /// <summary>
     /// Provides the definition of a Memento event dispatcher

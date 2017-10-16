@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Memento.Domain;
+using MementoFX.Domain;
 
-namespace Memento.Persistence
+namespace MementoFX.Persistence
 {
     /// <summary>
     /// Represents a repository capable of retrieving aggregates instance from a store 
@@ -70,19 +70,5 @@ namespace Memento.Persistence
         /// <typeparam name="T">The aggregate's type</typeparam>
         /// <param name="item">The aggregate instance</param>
         Task SaveAsync<T>(T item) where T : IAggregate;
-
-        /// <summary>
-        /// Saves a snapshot of an aggregate instance
-        /// </summary>
-        /// <typeparam name="T">The aggregate's type</typeparam>
-        /// <param name="item">The aggregate instance</param>
-        void SaveAndTakeSnapshot<T>(T item) where T : IAggregate, ISupportSnapshots;
-
-        /// <summary>
-        /// Saves a snapshot of an aggregate instance
-        /// </summary>
-        /// <typeparam name="T">The aggregate's type</typeparam>
-        /// <param name="item">The aggregate instance</param>
-        Task SaveAndTakeSnapshotAsync<T>(T item) where T : IAggregate, ISupportSnapshots;
     }
 }

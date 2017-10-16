@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Memento.Domain
+namespace MementoFX.Domain
 {
     /// <summary>
     /// Allows an aggregate to state which events it is interested in

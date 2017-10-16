@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Memento.Domain
+namespace MementoFX.Domain
 {
     /// <summary>
     /// Qualifies a property as the event's timestamp

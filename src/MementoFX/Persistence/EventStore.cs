@@ -4,10 +4,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Memento.Domain;
-using Memento.Messaging;
+using MementoFX.Domain;
+using MementoFX.Messaging;
 
-namespace Memento.Persistence
+namespace MementoFX.Persistence
 {
     /// <summary>
     /// Provides the base implementation for an EventStore

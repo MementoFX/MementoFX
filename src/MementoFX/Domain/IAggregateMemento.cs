@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Memento.Domain
+namespace MementoFX.Domain
 {
     /// <summary>
     /// Defines a memento storing the state of a MementoFX's aggregate

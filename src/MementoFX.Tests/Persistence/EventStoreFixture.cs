@@ -1,18 +1,18 @@
 ﻿using System;
-using Memento.Domain;
-using Memento.Persistence;
-using NUnit.Framework;
+using MementoFX.Domain;
+using MementoFX.Persistence;
+using Xunit;
 using SharpTestsEx;
 using Moq;
-using Memento.Messaging;
-using Memento.Persistence.InMemory;
+using MementoFX.Messaging;
+using MementoFX.Persistence.InMemory;
 
-namespace Memento.Tests.Persistence
+namespace MementoFX.Tests.Persistence
 {
-    [TestFixture]
+    
     public class EventStoreFixture
     {
-        [Test]
+        [Fact]
         public void ManageTimestamp_should_set_Timestamp_property()
         {
             var timestamp = new DateTime(2015, 11, 13);
@@ -22,10 +22,10 @@ namespace Memento.Tests.Persistence
                 EventTimestamp = timestamp
             };
             EventStore.ManageTimestamp(@event);
-            Assert.AreEqual(timestamp, @event.TimeStamp);
+            Assert.Equal(timestamp, @event.TimeStamp);
         }
 
-        [Test]
+        [Fact]
         public void ManageTimestamp_should_not_alter_Timestamp_property()
         {           
             var @event = new FakeEventUsingBuiltinTimestamp()
@@ -34,10 +34,10 @@ namespace Memento.Tests.Persistence
             };
             var timestamp = @event.TimeStamp;
             EventStore.ManageTimestamp(@event);
-            Assert.AreEqual(timestamp, @event.TimeStamp);
+            Assert.Equal(timestamp, @event.TimeStamp);
         }
 
-        [Test]
+        [Fact]
         public void Save_should_throw_ArgumentNullException_on_null_parameter()
         {
             var eventDispatcherMockBuilder = new Mock<IEventDispatcher>();

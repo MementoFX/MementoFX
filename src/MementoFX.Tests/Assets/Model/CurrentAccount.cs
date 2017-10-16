@@ -1,12 +1,12 @@
-﻿using Memento.Domain;
-using Memento.Tests.Assets.Events;
+﻿using MementoFX.Domain;
+using MementoFX.Tests.Assets.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Memento.Tests.Assets.Model
+namespace MementoFX.Tests.Assets.Model
 {
     public class CurrentAccount : Aggregate
     {

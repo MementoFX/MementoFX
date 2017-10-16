@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.Runtime.Serialization;
-using Memento.Domain;
+using MementoFX.Domain;
 
-namespace Memento.Persistence
+namespace MementoFX.Persistence
 {
     /// <summary>
     /// Provides the base implementation for a Repository
@@ -202,34 +202,6 @@ namespace Memento.Persistence
         public async Task SaveAsync<T>(T item) where T : IAggregate
         {
             await Task.Run(() => Save(item));
-        }
-
-        /// <summary>
-        /// Saves a snapshot of an aggregate instance
-        /// </summary>
-        /// <typeparam name="T">The aggregate's type</typeparam>
-        /// <param name="item">The aggregate instance</param>
-        public void SaveAndTakeSnapshot<T>(T item) where T : IAggregate, ISupportSnapshots
-        {
-            if (item == null)
-                throw new ArgumentNullException(nameof(item));
-            if (item as Aggregate != null && (item as Aggregate).IsTimeTravelling)
-                throw new ArgumentException("Can't save a time travelling instance.", nameof(item));
-
-            Save(item);
-            var memento = item.CreateMemento();
-            var snapshot = new SnapshotTakenEvent(memento);
-            EventStore.Save(snapshot);
-        }
-
-        /// <summary>
-        /// Saves a snapshot of an aggregate instance
-        /// </summary>
-        /// <typeparam name="T">The aggregate's type</typeparam>
-        /// <param name="item">The aggregate instance</param>
-        public async Task SaveAndTakeSnapshotAsync<T>(T item) where T : IAggregate, ISupportSnapshots
-        {
-            await Task.Run(() => SaveAndTakeSnapshot(item));
         }
         #endregion
     }

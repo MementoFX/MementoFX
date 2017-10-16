@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Memento
+namespace MementoFX
 {
     /// <summary>
     /// Provides the base implementation for Memento's domain events
