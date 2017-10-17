@@ -32,7 +32,7 @@ namespace MementoFX
         public DomainEvent()
         {
             this.Id = Guid.NewGuid();
-            this.TimeStamp = DateTime.Now;
+            this.TimeStamp = DateTime.UtcNow;
         }
     }
 }

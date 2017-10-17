@@ -99,7 +99,7 @@ namespace MementoFX.Persistence
             }
             if (timestampProperty != null)
             {
-                @event.TimeStamp = (DateTime)timestampProperty.GetValue(@event);
+                @event.TimeStamp = ((DateTime)timestampProperty.GetValue(@event)).ToUniversalTime();
             }
         }
     }

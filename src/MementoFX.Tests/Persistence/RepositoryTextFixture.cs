@@ -76,11 +76,12 @@ namespace MementoFX.Tests.Persistence
                 CurrentAccountId = currentAccountId,
                 Amount = 100
             };
-            withdrawal1.SetTimeStamp(DateTime.Now.AddMonths(1));
+            withdrawal1.SetTimeStamp(DateTime.UtcNow.AddMonths(1));
             EventStore.Save(withdrawal1);
 
+            var pointInTime = DateTime.UtcNow.AddMonths(2);
             var sut = new Repository(EventStore);
-            var currentAccount = sut.GetById<CurrentAccount>(currentAccountId, DateTime.Now.AddMonths(2));
+            var currentAccount = sut.GetById<CurrentAccount>(currentAccountId, pointInTime);
             Assert.Equal(2, ((IAggregate)currentAccount).OccurredEvents.Count);
         }
 

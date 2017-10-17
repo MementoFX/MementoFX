@@ -22,7 +22,7 @@ namespace MementoFX.Tests.Persistence
                 EventTimestamp = timestamp
             };
             EventStore.ManageTimestamp(@event);
-            Assert.Equal(timestamp, @event.TimeStamp);
+            Assert.Equal(timestamp.ToUniversalTime(), @event.TimeStamp);
         }
 
         [Fact]

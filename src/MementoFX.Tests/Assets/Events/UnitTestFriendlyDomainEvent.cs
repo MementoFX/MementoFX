@@ -12,7 +12,7 @@ namespace MementoFX.Tests.Assets.Events
         {
             var type = typeof(DomainEvent);
             var property = type.GetProperty(nameof(DomainEvent.TimeStamp));
-            property.SetValue(this, pointInTime);
+            property.SetValue(this, pointInTime.ToUniversalTime());
         }
     }
 }

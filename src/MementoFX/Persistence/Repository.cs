@@ -75,7 +75,7 @@ namespace MementoFX.Persistence
             IEnumerable<DomainEvent> events = null;
             dynamic aggregateInstance = FormatterServices.GetUninitializedObject(typeof(T));
             var eventDescriptors = BuildReplayableEventsDescriptorByAggregate<T>();
-            events = EventStore.RetrieveEvents(id, pointInTime, eventDescriptors, null);
+            events = EventStore.RetrieveEvents(id, pointInTime.ToUniversalTime(), eventDescriptors, null);
             (aggregateInstance as IAggregate).ReplayEvents(events);
             return (T)aggregateInstance;
         }
@@ -88,7 +88,7 @@ namespace MementoFX.Persistence
         /// <returns>The aggregate instance</returns>
         public T GetById<T>(Guid id) where T : IAggregate
         {
-            var aggregateInstance = _GetById<T>(id, DateTime.Now);
+            var aggregateInstance = _GetById<T>(id, DateTime.UtcNow);
             (aggregateInstance as Aggregate).IsTimeTravelling = false;
             return aggregateInstance;
         }
@@ -102,7 +102,7 @@ namespace MementoFX.Persistence
         /// <returns>The aggregate instance</returns>
         public T GetById<T>(Guid id, DateTime pointInTime) where T : IAggregate
         {
-            var aggregateInstance = _GetById<T>(id, DateTime.Now);
+            var aggregateInstance = _GetById<T>(id, pointInTime.ToUniversalTime());
             (aggregateInstance as Aggregate).IsTimeTravelling = true;
             return aggregateInstance;
         }
@@ -112,7 +112,7 @@ namespace MementoFX.Persistence
             IEnumerable<DomainEvent> events = null;
             dynamic aggregateInstance = FormatterServices.GetUninitializedObject(typeof(T));
             var eventDescriptors = BuildReplayableEventsDescriptorByAggregate<T>();
-            events = EventStore.RetrieveEvents(id, pointInTime, eventDescriptors, timelineId);
+            events = EventStore.RetrieveEvents(id, pointInTime.ToUniversalTime(), eventDescriptors, timelineId);
             (aggregateInstance as IAggregate).ReplayEvents(events);
             (aggregateInstance as Aggregate).timelineId = timelineId;
             return (T)aggregateInstance;
@@ -142,7 +142,7 @@ namespace MementoFX.Persistence
         /// <returns>The aggregate instance</returns>
         public T GetById<T>(Guid id, Guid timelineId, DateTime pointInTime) where T : IAggregate
         {
-            var aggregateInstance = _GetById<T>(id, timelineId, pointInTime);
+            var aggregateInstance = _GetById<T>(id, timelineId, pointInTime.ToUniversalTime());
             (aggregateInstance as Aggregate).IsTimeTravelling = true;
             return aggregateInstance;
         }
@@ -160,7 +160,7 @@ namespace MementoFX.Persistence
             IEnumerable<DomainEvent> events = null;
             dynamic aggregateInstance = FormatterServices.GetUninitializedObject(typeof(T));
             var eventDescriptors = BuildReplayableEventsDescriptorByAggregate<T>();
-            events = EventStore.RetrieveEvents(id, lastPointInTime, eventDescriptors, null);
+            events = EventStore.RetrieveEvents(id, lastPointInTime.ToUniversalTime(), eventDescriptors, null);
             IList<T> aggregates = new List<T>();
             foreach(var date in pointsInTime.OrderBy(d => d))
             {
