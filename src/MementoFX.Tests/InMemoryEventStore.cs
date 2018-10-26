@@ -1,12 +1,12 @@
-﻿using System;
+﻿using MementoFX.Domain;
+using MementoFX.Messaging;
+using MementoFX.Persistence;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MementoFX.Domain;
-using MementoFX.Persistence;
-using MementoFX.Messaging;
-using EventCondition = System.Linq.Expressions.Expression<System.Func<MementoFX.Persistence.EventMapping, bool>>;
+using System.Linq.Expressions;
 
 namespace MementoFX.Persistence.InMemory
 {
@@ -30,9 +30,9 @@ namespace MementoFX.Persistence.InMemory
         /// <typeparam name="T">The type of the event</typeparam>
         /// <param name="filter">The requirement</param>
         /// <returns>The events which satisfy the given requirement</returns>
-        public override IEnumerable<T> Find<T>(Func<T, bool> filter)
+        public override IEnumerable<T> Find<T>(Expression<Func<T, bool>> filter)
         {
-            return Events.OfType<T>().Where(filter);
+            return Events.OfType<T>().Where(filter.Compile());
         }
 
         /// <summary>
