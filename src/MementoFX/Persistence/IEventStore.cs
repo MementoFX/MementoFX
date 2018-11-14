@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,7 +19,7 @@ namespace MementoFX.Persistence
         /// <typeparam name="T">The type of the events to retrieve</typeparam>
         /// <param name="filter">The condition events must satisfy in order to be retrieved.</param>
         /// <returns>The events which satisfy the specified condition</returns>
-        IEnumerable<T> Find<T>(Func<T,bool> filter) where T : DomainEvent;
+        IEnumerable<T> Find<T>(Expression<Func<T,bool>> filter) where T : DomainEvent;
 
         /// <summary>
         /// Retrieves the desired events from the store
