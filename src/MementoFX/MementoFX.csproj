@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Authors>andysal, manageddesigns</Authors>
+    <Authors>Andrea Saltarello, Managed Designs</Authors>
     <Company>Managed Designs</Company>
     <Description>An application framework supporting the development of time travelling applications</Description>
     <Copyright>© 2013-2018 Andrea Saltarello, Managed Designs</Copyright>
@@ -15,7 +15,8 @@
     <SignAssembly>false</SignAssembly>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>2.0.0-pre6</Version>
-    <PackageTags>mementofx, persistence, in-memory, cqrs, event sourcing</PackageTags>
+    <PackageTags>mementofx, ddd, cqrs, event sourcing</PackageTags>
+    <PackageReleaseNotes></PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
