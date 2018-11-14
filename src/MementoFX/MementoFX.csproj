@@ -1,20 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Authors>andysal, mastreeno</Authors>
-    <Company>Mastreeno ltd</Company>
+    <Authors>andysal, manageddesigns</Authors>
+    <Company>Managed Designs</Company>
     <Description>An application framework supporting the development of time travelling applications</Description>
-    <Copyright>© 2017 Andrea Saltarello, Mastreeno ltd</Copyright>
+    <Copyright>© 2013-2018 Andrea Saltarello, Managed Designs</Copyright>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <FileVersion>2.0.0.0</FileVersion>
     <PackageLicenseUrl>https://github.com/MementoFX/MementoFX/blob/develop/license.txt</PackageLicenseUrl>
-    <PackageProjectUrl>https://mementofx.mastreeno.com</PackageProjectUrl>
+    <PackageProjectUrl>https://opensource.manageddesigns.it/mementofx</PackageProjectUrl>
     <RepositoryUrl>https://github.com/MementoFX/MementoFX/</RepositoryUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <SignAssembly>false</SignAssembly>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.0-pre5</Version>
+    <Version>2.0.0-pre6</Version>
     <PackageTags>mementofx, persistence, in-memory, cqrs, event sourcing</PackageTags>
   </PropertyGroup>
 

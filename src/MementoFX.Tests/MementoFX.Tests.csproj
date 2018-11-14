@@ -1,12 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <IsPackable>false</IsPackable>
-    <Company>Mastreeno ltd</Company>
+    <Company>Managed Designs</Company>
     <Product>MementoFX</Product>
-    <Authors>Mastreeno ltd, Andrea Saltarello</Authors>
-    <Copyright>© 2017 Andrea Saltarello, Mastreeno ltd</Copyright>
+    <Authors>andysal, manageddesigns</Authors>
+    <Copyright>© 2013-2018 Andrea Saltarello, Managed Designs</Copyright>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <FileVersion>2.0.0.0</FileVersion>
     <SignAssembly>false</SignAssembly>
