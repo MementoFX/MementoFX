@@ -80,29 +80,6 @@ namespace MementoFX.Domain
         }
         #endregion
 
-        #region snapshots management
-        /// <summary>
-        /// Creates a memento for the current instance
-        /// </summary>
-        /// <returns></returns>
-        protected AggregateMemento CreateMemento()
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Sets the state of the current instance via a memento
-        /// </summary>
-        /// <param name="memento">The memento used to set the instance's state</param>
-        protected void RestoreMemento(AggregateMemento memento)
-        {
-            if (memento == null)
-                throw new ArgumentNullException(nameof(memento));
-
-            throw new NotImplementedException();
-        }
-        #endregion
-
         /// <summary>
         /// Gets or sets whether the instance is a time travelling one
         /// </summary>
